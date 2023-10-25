@@ -1,15 +1,15 @@
 FROM python:3.8
 
-RUN mkdir /app
+WORKDIR /app
 
-WORKDIR /api
+COPY api/main.py /app/
 
-COPY main.py /app/
+COPY api/test-integration.py /app/
 
-COPY test-integration.py /app/
-
-COPY requirements.txt /app/
+COPY api/requirements.txt /app/
 
 RUN pip install -r requirements.txt
+
+EXPOSE 5000
 
 CMD ["python", "main.py"]
